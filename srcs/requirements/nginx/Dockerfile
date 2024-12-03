@@ -1,9 +1,12 @@
-
 # El Dockerfile siempre parte de una imagen creada, mediante la instrucción FROM. 
 
-FROM alpine
+FROM alpine:3.19
 
-#Tunel ssh creado a la perfeccionnnn, estoy haciendo
+# Actualizar los paquetes (solo por si acaso)
+RUN apk update && apk upgrade
 
 
+# Instalar dependencias de nginx
+RUN apk add nginx
 
+RUN cat /etc/nginx/http.d/www.cyberciti.biz.conf
