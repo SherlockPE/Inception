@@ -1,0 +1,24 @@
+services:
+  nginx:
+    build:
+      context: ./requirements/nginx #Directorio donde se encuentra el Dockerfile
+      dockerfile: Dockerfile #Nombre del Dockerfile
+    volumes:
+      - wordpress_data:/var/wordpress_data
+    networks:
+      - inception-net
+    expose:
+      - "9000"
+
+volumes:
+  wordpress_data:
+    driver: local
+    driver_opts:
+      # type: none
+      o: bind # Option 
+      device: ~/volumes/wordpress-volume
+
+
+networks:
+  inception-net:
+    driver: bridge
