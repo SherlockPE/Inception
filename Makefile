@@ -20,3 +20,6 @@ create_volumes:
 clean:
 	@echo $(RED)"Deleting Volumes... 🧹"$(NC)
 	rm -rf ~/volumes
+
+re:
+	clean all

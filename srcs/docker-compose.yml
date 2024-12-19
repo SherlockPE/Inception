@@ -10,11 +10,24 @@ services:
     expose:
       - "9000"
 
+  mariadb:
+    build:
+      context:  ./requirements/mariadb
+      dockerfile: Dockerfile
+
 volumes:
-  wordpress_data:
+  mariadb-data:
+    name: DB
     driver: local
     driver_opts:
-      # type: none
+      type: none
+      o: bind # Option 
+      device: ~/volumes/database-volume
+  wordpress_data:
+    name: "wordpress-data"
+    driver: local
+    driver_opts:
+      type: none
       o: bind # Option 
       device: ~/volumes/wordpress-volume
 
