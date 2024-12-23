@@ -10,16 +10,17 @@ YELLOW="\033[0;33m"
 NC="\033[0m"
 
 all: create_volumes
-	sudo docker compose -f srcs/docker-compose.yml up
+	docker compose -f srcs/docker-compose.yml up --build -d
+	docker compose -f srcs/docker-compose.yml start
 
 create_volumes:
 	@echo $(GREEN)"Creating volumes... 🗃️"$(NC)
-	mkdir -p ~/volumes/$(volume_1)
-	mkdir -p ~/volumes/$(volume_2)
+# mkdir -p ~/volumes/$(volume_1)
+# mkdir -p ~/volumes/$(volume_2)
 
 clean:
 	@echo $(RED)"Deleting Volumes... 🧹"$(NC)
-	rm -rf ~/volumes
+	docker compose -f srcs/docker-compose.yml down
+# rm -rf ~/volumes
 
-re:
-	clean all
+re: clean all

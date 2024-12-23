@@ -8,3 +8,7 @@ RUN apk update && apk upgrade
 
 # Instalar dependencias de nginx
 RUN apk add nginx
+
+# RUN cat /etc/nginx/nginx.conf
+
+CMD ["tail", "-f"]
