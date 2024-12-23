@@ -1,5 +1,7 @@
 services:
   nginx:
+    image : nginx
+    restart: always
     build:
       context: ./requirements/nginx #Directorio donde se encuentra el Dockerfile
       dockerfile: Dockerfile #Nombre del Dockerfile
@@ -9,6 +11,7 @@ services:
       - inception-net
     expose:
       - "9000"
+    container_name: nginx-container
 
   mariadb:
     build:

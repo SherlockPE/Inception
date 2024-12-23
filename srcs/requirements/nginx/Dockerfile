@@ -11,4 +11,6 @@ RUN apk add nginx
 
 # RUN cat /etc/nginx/nginx.conf
 
+EXPOSE 443
+
 CMD ["tail", "-f"]
