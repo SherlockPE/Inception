@@ -13,4 +13,6 @@ RUN apk add nginx
 
 EXPOSE 443
 
-CMD ["tail", "-f"]
+COPY ./tools/nginx-conf.sh /
+
+CMD [ "/nginx-conf.sh" ]
