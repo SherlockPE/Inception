@@ -15,8 +15,8 @@ all: create_volumes
 
 create_volumes:
 	@echo $(GREEN)"Creating volumes... 🗃️"$(NC)
-# mkdir -p ~/volumes/$(volume_1)
-# mkdir -p ~/volumes/$(volume_2)
+	mkdir -p ~/$(USER)/data/$(volume_1)
+	mkdir -p ~/$(USER)/data/$(volume_2)
 
 clean:
 	@echo $(RED)"Deleting Volumes... 🧹"$(NC)

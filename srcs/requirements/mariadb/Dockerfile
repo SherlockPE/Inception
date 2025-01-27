@@ -6,3 +6,4 @@ RUN apk update && apk upgrade
 
 # Instalar dependencias de nginx
 RUN apk add mariadb
+

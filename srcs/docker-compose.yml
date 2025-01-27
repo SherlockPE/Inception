@@ -1,7 +1,33 @@
 services:
-  nginx:
-    image : nginx
+  mariadb:
     restart: always
+    build:
+      context:  ./requirements/mariadb #Directorio donde se encuentra el Dockerfile
+      dockerfile: Dockerfile #Nombre del Dockerfile
+    env_file:
+    - ./env
+
+  wordpress:
+    restart: always
+    depends_on:
+      - mariadb
+    build:
+      context: ./requirements/wordpress #Directorio donde se encuentra el Dockerfile
+      dockerfile: Dockerfile #Nombre del Dockerfile
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception-net
+    expose:
+      - "9000"
+    container_name: wordpress
+    env_file:
+      - ./env
+
+  nginx:
+    restart: always
+    depends_on:
+      - wordpress
     build:
       context: ./requirements/nginx #Directorio donde se encuentra el Dockerfile
       dockerfile: Dockerfile #Nombre del Dockerfile
@@ -9,14 +35,12 @@ services:
       - wordpress_data:/var/wordpress_data
     networks:
       - inception-net
-    expose:
-      - "9000"
-    container_name: nginx-container
+    ports:
+      - 443:443
+    container_name: nginx
+    env_file:
+      - ./env
 
-  mariadb:
-    build:
-      context:  ./requirements/mariadb
-      dockerfile: Dockerfile
 
 volumes:
   mariadb-data:
