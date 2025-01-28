@@ -1,17 +1,30 @@
 # El Dockerfile siempre parte de una imagen creada, mediante la instrucción FROM. 
 FROM alpine:3.20
 
-# Actualizar los paquetes (solo por si acaso)
-RUN apk update && apk upgrade
+# Instalar dependencias
+RUN apk update && apk add mariadb mariadb-client
 
-# Instalar dependencias de nginx
-RUN apk add mariadb
+#Configuration file for database
+COPY ./conf/mariadb-conf.cnf /etc/my.cnf.d/inception-conf.cnf
 
-COPY ./tools/mariadb-conf.sh /
+#Setup script
+COPY ./tools/script.sh /
+COPY ./conf/database-setup.sql /database-setup.sql
+RUN chmod +x /script.sh
 
-RUN ["chmod", "+x", "/mariadb-conf.sh"]
+# Directory's for the database
+RUN mkdir -p /run/mysqld \
+    && mkdir -p /var/lib/mysql \
+    && chmod 777 /run/mysqld \
+    && chmod 777 /var/lib/mysql
+
+# Users and permissions
+RUN adduser mysql www-data \
+    && adduser -D www-data -G www-data
+
+# Inicializar la base de datos MySQL en el directorio /var/lib/mysql usando el usuario mysql
+RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
 
 EXPOSE 3306
 
-# Solo puede haber un CMD por Dockerfile
-CMD [ "/mariadb-conf.sh" ] 
+CMD [ "/script.sh" ] 
