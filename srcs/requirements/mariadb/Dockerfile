@@ -7,3 +7,11 @@ RUN apk update && apk upgrade
 # Instalar dependencias de nginx
 RUN apk add mariadb
 
+COPY ./tools/mariadb-conf.sh /
+
+RUN ["chmod", "+x", "/mariadb-conf.sh"]
+
+EXPOSE 3306
+
+# Solo puede haber un CMD por Dockerfile
+CMD [ "/mariadb-conf.sh" ] 

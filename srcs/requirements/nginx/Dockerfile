@@ -15,4 +15,6 @@ EXPOSE 443
 
 COPY ./tools/nginx-conf.sh /
 
+RUN ["chmod", "+x", "/nginx-conf.sh"]
+
 CMD [ "/nginx-conf.sh" ]

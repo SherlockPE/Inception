@@ -1,61 +1,61 @@
 services:
   mariadb:
+    container_name: mariadb
     restart: always
     build:
-      context:  ./requirements/mariadb #Directorio donde se encuentra el Dockerfile
-      dockerfile: Dockerfile #Nombre del Dockerfile
-    env_file:
-    - ./env
-
-  wordpress:
-    restart: always
-    depends_on:
-      - mariadb
-    build:
-      context: ./requirements/wordpress #Directorio donde se encuentra el Dockerfile
-      dockerfile: Dockerfile #Nombre del Dockerfile
+      context:  ./requirements/mariadb 
+      dockerfile: Dockerfile
+    image: mariadb
+    env_file: ./.env
     volumes:
-      - wordpress_data:/var/www/html
+      -  mariadb:/var/lib/mysql # Me falta esto!!!!
     networks:
       - inception-net
-    expose:
-      - "9000"
+
+  wordpress:
     container_name: wordpress
-    env_file:
-      - ./env
+    restart: always
+    build:
+      context: ./requirements/wordpress 
+      dockerfile: Dockerfile
+    image: wordpress
+    env_file: ./.env
+    volumes:
+      - wordpress:/var/www/html # Me falta esto!!!!
+    depends_on:
+      - mariadb
+    networks:
+      - inception-net
 
   nginx:
     restart: always
+    container_name: nginx
+    build:
+      context: ./requirements/nginx
+      dockerfile: Dockerfile
+    env_file: ./.env
+    volumes:
+      - wordpress:/var/wordpress_data
     depends_on:
       - wordpress
-    build:
-      context: ./requirements/nginx #Directorio donde se encuentra el Dockerfile
-      dockerfile: Dockerfile #Nombre del Dockerfile
-    volumes:
-      - wordpress_data:/var/wordpress_data
     networks:
       - inception-net
     ports:
       - 443:443
-    container_name: nginx
-    env_file:
-      - ./env
 
-
+#En el host
 volumes:
-  mariadb-data:
-    name: DB
+  mariadb:
     driver: local
     driver_opts:
       type: none
-      o: bind # Option 
-      device: ~/volumes/database-volume
-  wordpress_data:
-    name: "wordpress-data"
+      o: bind # Option for mounting an existing directory
+      device: ~/volumes/mariadb-volume
+  wordpress:
     driver: local
     driver_opts:
       type: none
-      o: bind # Option 
+      o: bind # Option for mounting an existing directory
       device: ~/volumes/wordpress-volume
 
 
