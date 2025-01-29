@@ -1,20 +1,16 @@
-# El Dockerfile siempre parte de una imagen creada, mediante la instrucción FROM. 
-
 FROM alpine:3.20.5
 
-# Actualizar los paquetes (solo por si acaso)
-RUN apk update && apk upgrade
+RUN apk update\
+    && apk add\
+    nginx\
+    openssl\
+    envsubst
 
-
-# Instalar dependencias de nginx
-RUN apk add nginx
-
-# RUN cat /etc/nginx/nginx.conf
-
-EXPOSE 443
-
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 COPY ./tools/nginx-conf.sh /
 
 RUN ["chmod", "+x", "/nginx-conf.sh"]
+
+EXPOSE 443
 
 CMD [ "/nginx-conf.sh" ]
