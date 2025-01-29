@@ -6,11 +6,11 @@ RUN apk update\
     openssl\
     envsubst
 
-COPY ./conf/nginx.conf /etc/nginx/nginx.conf
-COPY ./tools/nginx-conf.sh /
+COPY ./conf/nginx.conf /etc/nginx/http.d/inception.conf
+COPY ./tools/script.sh /script.sh
 
-RUN ["chmod", "+x", "/nginx-conf.sh"]
+RUN ["chmod", "+x", "/script.sh"]
 
 EXPOSE 443
 
-CMD [ "/nginx-conf.sh" ]
+CMD [ "/script.sh" ]
