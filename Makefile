@@ -42,4 +42,4 @@ re: clean up
 
 .PHONY: all down stop restart create_volumes clean re
 
-.SILENT: create_volumes
+# .SILENT: create_volumes

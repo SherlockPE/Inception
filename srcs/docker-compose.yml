@@ -45,18 +45,18 @@ services:
 
 #En el host
 volumes:
-  mariadb:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind # Option for mounting an existing directory
-      device: ~/volumes/mariadb-volume
   wordpress:
     driver: local
     driver_opts:
       type: none
       o: bind # Option for mounting an existing directory
-      device: ~/volumes/wordpress-volume
+      device: ~/${LOGIN}/data/wordpress-volume
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind # Option for mounting an existing directory
+      device: ~/${LOGIN}/data/mariadb-volume
 
 
 networks:

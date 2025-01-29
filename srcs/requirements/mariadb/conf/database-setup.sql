@@ -1,7 +1,7 @@
+CREATE DATABASE IF NOT EXIST '${DB_NAME}' CHARACTER SET utf8;
 
+CREATE USER IF NOT EXIST '${MDB_USER}'@'%' IDENTIFIED BY '${MDB_USER_PASSWORD}';
+CREATE USER IF NOT EXIST 'Jesus'@'%' IDENTIFIED BY '${MDB_ROOT_PASSWORD}';
 
-Hi, my name is ${LOGIN} and my domain is {DOMAIN}
-
-The mariadb User is ${MDB_USER} and the password is ${MDB_USER_PASSWORD}
-
-The admin password is ${MDB_ADMIN_PASSWORD}
+GRANT ALL ON '${DB_NAME}'.* TO '${MDB_USER}'@'%';
+GRANT ALL ON *.* TO 'Jesus'@'%';

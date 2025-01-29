@@ -1,8 +1,11 @@
 # El Dockerfile siempre parte de una imagen creada, mediante la instrucción FROM. 
-FROM alpine:3.20
+FROM alpine:3.20.5
 
 # Instalar dependencias
-RUN apk update && apk add mariadb mariadb-client
+RUN apk update\
+    && apk add\
+    mariadb mariadb-client\
+    envsubst
 
 #Configuration file for database
 COPY ./conf/mariadb-conf.cnf /etc/my.cnf.d/inception-conf.cnf
