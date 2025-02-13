@@ -6,14 +6,13 @@ RUN apk update && apk add --no-cache \
     php82\
     php82-fpm\
     php82-cgi\
+    php82-cli\
+    php82-phar\
     php82-mysqli\
     php82-iconv\
     php82-mbstring\
     fcgi\
     envsubst
-    
-# tar\
-# wget\
 
 # Crear directorios de trabajo
 RUN mkdir -p /usr/share/webapps/
@@ -33,17 +32,22 @@ RUN rm /usr/share/webapps/latest.tar.gz
 RUN ln -s /usr/share/webapps/wordpress/ /var/www/localhost/htdocs/wordpress
 
 # Descargar e instalar WP_CLI
-ADD https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /usr/local/bin/wp
+ADD https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /usr/local/bin
+RUN mv /usr/local/bin/wp-cli.phar /usr/local/bin/wp
+RUN chmod +x /usr/local/bin/wp
 
-#En verdad necesito esto?
-RUN mv /usr/local/bin/wp /usr/local/bin/wp-cli
+# RUN mv /usr/local/bin/wp /usr/local/bin/wp-cli
 
 EXPOSE 3306 
 EXPOSE 9000
 
+# Copiar archivos de configuración
 COPY ./conf/wp-config.php /tmp/wp-config.php
+COPY ./conf/www.conf /etc/php8/php-fpm.d/www.conf
 
+# Copiar script de ejecución
 COPY ./tools/script.sh /script.sh
 RUN chmod +x /script.sh
 
+# Ejecutar script
 CMD [ "/script.sh" ]
