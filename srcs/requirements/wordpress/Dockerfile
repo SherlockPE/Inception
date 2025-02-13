@@ -28,7 +28,8 @@ RUN chown -R www-data:www-data /var/www/localhost/htdocs/wordpress
 
 # Descargar e instalar Wordpress
 ADD https://wordpress.org/latest.tar.gz /usr/share/webapps/
-# RUN tar -xzvf latest.tar.gz && rm latest.tar.gz
+RUN tar -xzf /usr/share/webapps/latest.tar.gz -C /usr/share/webapps/
+RUN rm /usr/share/webapps/latest.tar.gz
 RUN ln -s /usr/share/webapps/wordpress/ /var/www/localhost/htdocs/wordpress
 
 # Descargar e instalar WP_CLI
@@ -40,8 +41,9 @@ RUN mv /usr/local/bin/wp /usr/local/bin/wp-cli
 EXPOSE 3306 
 EXPOSE 9000
 
-COPY ./tools/script.sh /script.sh
+COPY ./conf/wp-config.php /tmp/wp-config.php
 
+COPY ./tools/script.sh /script.sh
 RUN chmod +x /script.sh
 
 CMD [ "/script.sh" ]

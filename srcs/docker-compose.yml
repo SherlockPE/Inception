@@ -11,6 +11,8 @@ services:
       -  mariadb:/var/lib/mysql # Me falta esto!!!!
     networks:
       - inception-net
+    ports:
+      - 3306:3306
 
   wordpress:
     container_name: wordpress

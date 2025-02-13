@@ -38,7 +38,7 @@ clean:
 	docker compose -f srcs/docker-compose.yml down
 	rm -rf ~/$(USER)/data
 
-re: clean up
+re: clean all
 
 .PHONY: all down stop restart create_volumes clean re
 
