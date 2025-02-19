@@ -48,14 +48,15 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         '42-!8h%3|k-_&uGGJEuJH:R:+?YP3:+d:l6q}&ElL{HHh(1IMZ9Ed;HWd3*sxt-42');
-define('SECURE_AUTH_KEY',  '42-t =1oXG>m_^x]S|5jk9R6OD=.p/c+J+}R0|ZP<0*UqF([=>y01v%[U)IK`8-42');
-define('LOGGED_IN_KEY',    '42-?<$~.EVU+R0K8xfj7aec]]Ybx#n_gair?~~ S+V^Wd+A22?hIy[E<4X=^mK-42');
-define('NONCE_KEY',        '42-yfAPqF<!cKqUA-ERY80CDK -qaDYaJ|7LfX6xFk5Z+5Do45$Mz}Vc+1]d-V-42');
-define('AUTH_SALT',        '42-Visb+L-V&7]-M$.[5QlM>,R)m/+o=&_XG0FAZ;Jz=h^:)[!.u=K#ILaU!?E-42');
-define('SECURE_AUTH_SALT', '42-F#.cxw_!YOuC{Yh[Gjp,}K]qpeTA?J YVe{h=5}C73{8Txq>V#c{]%fV<CY-42');
-define('LOGGED_IN_SALT',   '42-D<zR<Ne]c0sn<dAb9X4qQb v%99#F> 8Mco!+NBxaw`)o7!GJXA-J1eN^<v-42');
-define('NONCE_SALT',       '42-Rg1LWr;Iv<P*ns)P({p@IgH?Mm=s5q$_$|#xlC#Ye-Bb6*4su+w1{DX+|S6-42');
+
+define('AUTH_KEY',         'vB|M#/[UCG]|PtJ39h^0dWfo`Q1zg?UL%?L7!ND%]-YLs~=@R[JwbZT7&H7x*&y@');
+define('SECURE_AUTH_KEY',  '^?IQv-zD-X_[U(8/(Ax%ihnU=Xjt/fEOx1i>?;,rKhvR6}51u qv)S0M-_<pM%r>');
+define('LOGGED_IN_KEY',    '^VCi#4-;k*iTZq^S;%;2P9U(87d6yjS{S8#y mY(zO&fbAec+%ta|6`T~.-_>4rS');
+define('NONCE_KEY',        'O0ovz:yV?2-8Qn=m8FlNm/N#ps--cKE!:o&4l;mNa?~[Z+pk>Bl$Nc <Svnl(L]#');
+define('AUTH_SALT',        '5gUs]-;QJ5+nTOf6IOzJ0Fj*6$I0J#d[^}i.-Y)1Y-1@7plAyHa@P?YiW-0Z->Q-');
+define('SECURE_AUTH_SALT', 't=*x[-mc0OAhA$+x+kl*q fP|vm0wT?ie<OU7oQx]-;fV`xozslAbTYGoXa!MKp#');
+define('LOGGED_IN_SALT',   'KXAi+!.QSblR2,Ul3gCp)/!BP,sLvadn5O0kIC^Z>aRWYHU}#N..9A59?Ac/#1?j');
+define('NONCE_SALT',       '_-lg@!=:U@e3JAFB5MA03rg]RaBuZBA.w6/TS O:t$B*Q%wQ/cF.3RSCc^-_X1b4');
 
 /**#@-*/
 
@@ -85,7 +86,7 @@ $table_prefix = 'wp42_';
  *
  * @link https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/
  */
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
