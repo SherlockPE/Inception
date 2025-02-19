@@ -10,9 +10,3 @@ envsubst < /database-env.bk > /database-setup.sql
 #usando el archivo de configuracion y el usuario mysql
 #para que tenga los permisos necesarios
 mariadbd --user=mysql --init-file=/database-setup.sql
-
-
-
-
-
-#mariadbd-safe --user=mysql --init-file=/database-setup.sql

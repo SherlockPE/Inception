@@ -12,7 +12,7 @@ NC='\033[0m'
 
 # Create a new wp-config.php file
 # envsubst < /tmp/wp-config.php > /usr/share/webapps/wordpress/wp-config.php
-envsubst '$DB_NAME $MDB_USER MDB_USER_PASSWORD' < /tmp/wp-config.php > /usr/share/webapps/wordpress/wp-config.php
+envsubst '$DB_NAME $MDB_USER $MDB_USER_PASSWORD' < /tmp/wp-config.php > /usr/share/webapps/wordpress/wp-config.php
 
 #Enlace simbolico para que wp pueda funcionar con php82
 ln -s /usr/bin/php82 /usr/bin/php

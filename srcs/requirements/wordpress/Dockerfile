@@ -17,6 +17,7 @@ RUN apk update && apk add --no-cache \
 # Crear directorios de trabajo
 RUN mkdir -p /usr/share/webapps/
 RUN mkdir -p /var/www/localhost/htdocs/wordpress
+RUN mkdir -p /run/php
 
 # Creacion del usuario que usan los web servers para manejar procesos
 RUN adduser -D www-data -G www-data
@@ -24,6 +25,7 @@ RUN adduser -D www-data -G www-data
 #Asignar permisos a las carpetas
 RUN chown -R www-data:www-data /usr/share/webapps
 RUN chown -R www-data:www-data /var/www/localhost/htdocs/wordpress
+RUN chown -R www-data:www-data /run/php
 
 # Descargar e instalar Wordpress
 ADD https://wordpress.org/latest.tar.gz /usr/share/webapps/

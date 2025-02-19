@@ -37,7 +37,7 @@ services:
       dockerfile: Dockerfile
     env_file: ./.env
     volumes:
-      - wordpress:/var/wordpress_data
+      - wordpress:/var/www/html
     depends_on:
       - wordpress
     networks:
