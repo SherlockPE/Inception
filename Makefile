@@ -22,16 +22,16 @@ stop:
 restart:
 	docker compose -f srcs/docker-compose.yml restart
 
-kill:
-	docker ps -a
-	docker stop $$(docker ps -aq)
-	docker rm $$(docker ps -aq)
+# Clean all images and networks
+kill: stop down 
+	docker rmi $(docker images -q)
+	docker network rm $(docker network ls -q)
 
 create_volumes:
 	echo $(GREEN)"Creating volumes... 🗃️"$(NC)
-	mkdir -p ~/$(USER)/data
-	mkdir -p ~/$(USER)/data/$(volume_1)
-	mkdir -p ~/$(USER)/data/$(volume_2)
+	mkdir -p ~/home/$(USER)data
+	mkdir -p /home/${USER}/data/$(volume_1)
+	mkdir -p /home/${USER}/data/$(volume_2)
 
 clean:
 	@echo $(RED)"Deleting Volumes... 🧹"$(NC)

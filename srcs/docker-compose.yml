@@ -8,7 +8,7 @@ services:
     image: mariadb
     env_file: ./.env
     volumes:
-      -  mariadb:/var/lib/mysql # Me falta esto!!!!
+      -  mariadb:/var/lib/mysql
     networks:
       - inception-net
     ports:
@@ -23,7 +23,7 @@ services:
     image: wordpress
     env_file: ./.env
     volumes:
-      - wordpress:/var/www/html # Me falta esto!!!!
+      - wordpress:/usr/share/webapps/
     depends_on:
       - mariadb
     networks:
@@ -51,14 +51,14 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      o: bind # Option for mounting an existing directory
-      device: ~/${LOGIN}/data/wordpress-volume
+      o: bind
+      device: /home/${USER}/data/wordpress-volume
   mariadb:
     driver: local
     driver_opts:
       type: none
-      o: bind # Option for mounting an existing directory
-      device: ~/${LOGIN}/data/mariadb-volume
+      o: bind
+      device: /home/${USER}/data/mariadb-volume
 
 
 networks:
