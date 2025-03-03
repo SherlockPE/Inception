@@ -8,7 +8,7 @@ RUN apk update\
     envsubst
 
 #Configuration file for database
-COPY ./conf/mariadb-conf.cnf /etc/my.cnf.d/inception-conf.cnf
+COPY ./conf/mariadb-conf.cnf /etc/my.cnf.d/mariadb-server.cnf
 
 #Setup script
 COPY ./tools/script.sh /
@@ -26,7 +26,9 @@ RUN adduser mysql www-data \
     && adduser -D www-data -G www-data
 
 # Inicializar la base de datos MySQL en el directorio /var/lib/mysql usando el usuario mysql
-RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
+RUN /usr/bin/mysql_install_db --user=mysql --datadir=/var/lib/mysql --force
+
+
 
 EXPOSE 3306
 

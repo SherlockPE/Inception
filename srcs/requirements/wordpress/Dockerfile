@@ -12,7 +12,8 @@ RUN apk update && apk add --no-cache \
     php82-iconv\
     php82-mbstring\
     fcgi\
-    envsubst
+    envsubst\
+    mysql-client
 
 # Crear directorios de trabajo
 RUN mkdir -p /usr/share/webapps/
@@ -40,7 +41,6 @@ RUN chmod +x /usr/local/bin/wp
 
 # RUN mv /usr/local/bin/wp /usr/local/bin/wp-cli
 
-EXPOSE 3306 
 EXPOSE 9000
 
 # Copiar archivos de configuración

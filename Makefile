@@ -22,6 +22,9 @@ stop:
 restart:
 	docker compose -f srcs/docker-compose.yml restart
 
+logs:
+	docker compose -f srcs/docker-compose.yml logs
+
 # Clean all images and networks
 kill: stop down 
 	docker rmi $(docker images -q)
@@ -29,14 +32,14 @@ kill: stop down
 
 create_volumes:
 	echo $(GREEN)"Creating volumes... 🗃️"$(NC)
-	mkdir -p ~/home/$(USER)data
+	mkdir -p /home/$(USER)/data
 	mkdir -p /home/${USER}/data/$(volume_1)
 	mkdir -p /home/${USER}/data/$(volume_2)
 
 clean:
 	@echo $(RED)"Deleting Volumes... 🧹"$(NC)
 	docker compose -f srcs/docker-compose.yml down
-	rm -rf ~/$(USER)/data
+	sudo rm -rf ~/$(USER)/data
 
 re: clean all
 

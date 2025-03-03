@@ -6,7 +6,7 @@ RUN apk update\
     openssl\
     envsubst
 
-COPY ./conf/nginx.conf /etc/nginx/http.d/inception.conf
+COPY ./conf/nginx.conf /etc/nginx/http.d/inception.conf.bk
 COPY ./tools/script.sh /script.sh
 
 RUN ["chmod", "+x", "/script.sh"]
