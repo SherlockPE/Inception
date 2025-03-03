@@ -20,7 +20,6 @@ ln -s /usr/bin/php82 /usr/bin/php
 # while ! ping -q -c 1 mariadb:3306 >/dev/null ; do sleep 1; done;
 
 #Instalación de wordpress
-echo $WHITE "Instalando wordpresssszzzzzz..." $NC
 wp core install \
     --path="/usr/share/webapps/wordpress" \
     --url="${DOMAIN}" \
@@ -32,7 +31,6 @@ wp core install \
     --skip-email
 
 #Creacion de usuario normalucho
-echo $GREEN_LIGHT "Creando usuario ${WORDPRESS_USER}" $NC
 wp user create \
     ${WORDPRESS_USER}\
     a@quien.leimporta\
