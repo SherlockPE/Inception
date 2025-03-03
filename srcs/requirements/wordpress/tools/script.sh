@@ -17,7 +17,7 @@ envsubst '$DB_NAME $MDB_USER $MDB_USER_PASSWORD' < /tmp/wp-config.php > /usr/sha
 #Enlace simbolico para que wp pueda funcionar con php82
 ln -s /usr/bin/php82 /usr/bin/php
 
-while ! ping -q -c 1 mariadb:3306 >/dev/null ; do sleep 1; done;
+# while ! ping -q -c 1 mariadb:3306 >/dev/null ; do sleep 1; done;
 
 #Instalación de wordpress
 echo $WHITE "Instalando wordpresssszzzzzz..." $NC

@@ -26,9 +26,10 @@ logs:
 	docker compose -f srcs/docker-compose.yml logs
 
 # Clean all images and networks
-kill: stop down 
-	docker rmi $(docker images -q)
+kill: down 
+	sudo rm -rf ~/$(USER)/data
 	docker network rm $(docker network ls -q)
+	docker rmi $(docker images -aq)
 
 create_volumes:
 	echo $(GREEN)"Creating volumes... 🗃️"$(NC)
