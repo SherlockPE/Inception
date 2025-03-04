@@ -13,11 +13,18 @@ all: create_volumes
 	docker compose -f srcs/docker-compose.yml up --build -d
 	docker compose -f srcs/docker-compose.yml start
 
+up-%:
+	docker compose -f srcs/docker-compose.yml up $* -d
+
+
 down:
 	docker compose -f srcs/docker-compose.yml down
 
 stop:
 	docker compose -f srcs/docker-compose.yml stop
+
+build-%:
+	docker compose -f srcs/docker-compose.yml build $* 
 
 restart:
 	docker compose -f srcs/docker-compose.yml restart
@@ -27,9 +34,9 @@ logs:
 
 # Clean all images and networks
 kill: down 
-	sudo rm -rf ~/$(USER)/data
-	docker network rm $(docker network ls -q)
-	docker rmi $(docker images -aq)
+	sudo rm -rf /home/$(USER)/data
+	docker network prune
+	docker rmi $$(docker images -aq)
 
 create_volumes:
 	echo $(GREEN)"Creating volumes... 🗃️"$(NC)
