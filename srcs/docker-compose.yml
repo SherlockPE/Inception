@@ -16,8 +16,6 @@ services:
       -  mariadb:/var/lib/mysql
     networks:
       - inception-net
-# ports:
-#   - 3306:3306
 
   wordpress:
     container_name: wordpress
@@ -45,7 +43,7 @@ services:
     image: nginx
     env_file: ./.env
     volumes:
-      - wordpress:/var/www/html
+      - wordpress:/usr/share/webapps/
     depends_on:
       - wordpress
     networks:

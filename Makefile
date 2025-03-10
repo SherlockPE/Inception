@@ -40,7 +40,6 @@ kill: down
 
 create_volumes:
 	echo $(GREEN)"Creating volumes... 🗃️"$(NC)
-	mkdir -p /home/$(USER)/data
 	mkdir -p /home/${USER}/data/$(volume_1)
 	mkdir -p /home/${USER}/data/$(volume_2)
 
@@ -49,7 +48,7 @@ clean:
 	docker compose -f srcs/docker-compose.yml down
 	sudo rm -rf ~/$(USER)/data
 
-re: clean all
+re: kill all
 
 .PHONY: all down stop restart create_volumes clean re
 
