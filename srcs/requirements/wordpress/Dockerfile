@@ -45,7 +45,7 @@ EXPOSE 9000
 
 # Copiar archivos de configuración
 COPY ./conf/wp-config.php /tmp/wp-config.php
-COPY ./conf/www.conf /etc/php8/php-fpm.d/www.conf
+COPY ./conf/www.conf /etc/php82/php-fpm.d/www.conf
 
 # Copiar script de ejecución
 COPY ./tools/script.sh /script.sh
