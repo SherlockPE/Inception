@@ -23,10 +23,10 @@
 define( 'DB_NAME', getenv('DB_NAME') );
 
 /** Database username */
-define( 'DB_USER', '${MDB_USER}' );
+define( 'DB_USER', getenv('MDB_USER') );
 
 /** Database password */
-define( 'DB_PASSWORD', '${MDB_USER_PASSWORD}' );
+define( 'DB_PASSWORD', getenv('MDB_USER_PASSWORD') );
 
 /** Database hostname */
 define( 'DB_HOST', 'mariadb:3306' );
