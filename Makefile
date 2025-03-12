@@ -12,10 +12,11 @@ NC="\033[0m"
 all: create_volumes
 	docker compose -f srcs/docker-compose.yml up --build -d
 	docker compose -f srcs/docker-compose.yml start
+	@echo ${GREEN}"All services are running ✅"
+	@echo "You can access the website at the following addresses: https://localhost:443 and https://flopez-r.42.fr" ${NC}
 
 up-%:
 	docker compose -f srcs/docker-compose.yml up $* -d
-
 
 down:
 	docker compose -f srcs/docker-compose.yml down
@@ -35,6 +36,7 @@ logs:
 # Clean all images and networks
 kill: down 
 	sudo rm -rf /home/$(USER)/data
+	docker volume prune
 	docker network prune
 	docker rmi $$(docker images -aq)
 

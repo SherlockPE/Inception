@@ -14,20 +14,18 @@ COPY ./tools/script.sh /
 COPY ./conf/database-setup.sql /database-setup.sql
 RUN chmod +x /script.sh
 
-# Directory's for the database
-RUN mkdir -p /run/mysqld \
-    && mkdir -p /var/lib/mysql \
-    && chmod 777 /run/mysqld \
-    && chmod 777 /var/lib/mysql
-
 # Users and permissions
 RUN adduser mysql www-data \
     && adduser -D www-data -G www-data
 
+# Directory's for the database
+RUN mkdir -p /run/mysqld \
+    && mkdir -p /var/lib/mysql \
+    && chown -R www-data:www-data /run/mysqld \
+    && chown -R www-data:www-data /var/lib/mysql
+
 # Inicializar la base de datos MySQL en el directorio /var/lib/mysql usando el usuario mysql
 RUN /usr/bin/mysql_install_db --user=mysql --datadir=/var/lib/mysql --force
-
-
 
 EXPOSE 3306
 
