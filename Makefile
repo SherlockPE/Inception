@@ -12,9 +12,9 @@ NC="\033[0m"
 all: create_volumes
 	docker compose -f srcs/docker-compose.yml up --build -d
 	docker compose -f srcs/docker-compose.yml start
-	@echo ${GREEN}"All services are running ✅"
-	@echo -n "You can access the website at the following addresses: 
-	@echo ${YELLOW} https://localhost:443 ${GREEN} and ${YELLOW} https://flopez-r.42.fr" ${NC}
+	@echo ${GREEN}"All services are running ✅" $(NC)
+	@echo -n "You can access the website at the following addresses: "
+	@echo ${YELLOW} https://localhost:443 ${NC} and ${YELLOW} https://flopez-r.42.fr ${NC}
 
 up-%:
 	docker compose -f srcs/docker-compose.yml up $* -d
@@ -38,7 +38,6 @@ logs:
 kill: down 
 	sudo rm -rf /home/$(USER)/data
 	docker volume rm $$(docker volume ls -q)
-	docker network rm $$(docker network ls -q)
 	docker rmi $$(docker images -aq)
 
 create_volumes:
