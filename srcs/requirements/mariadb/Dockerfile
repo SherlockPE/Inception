@@ -1,5 +1,5 @@
 # El Dockerfile siempre parte de una imagen creada, mediante la instrucción FROM. 
-FROM alpine:3.20.5
+FROM alpine:3.20
 
 # Instalar dependencias
 RUN apk update && apk add --no-cache\
