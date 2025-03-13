@@ -1,23 +1,11 @@
 #!bin/sh
 
-# COLORS
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-CYAN='\033[0;36m'
-PINK='\033[0;35m'
-WHITE='\033[1;37m'
-GREEN_LIGHT='\033[1;32m'
-NC='\033[0m'
-
 # Create a new wp-config.php file
 # envsubst < /tmp/wp-config.php > /usr/share/webapps/wordpress/wp-config.php
 envsubst '$DB_NAME $MDB_USER $MDB_USER_PASSWORD' < /tmp/wp-config.php > /usr/share/webapps/wordpress/wp-config.php
 
 #Enlace simbolico para que wp pueda funcionar con php82
 ln -s /usr/bin/php82 /usr/bin/php
-
-# while ! ping -q -c 1 mariadb:3306 >/dev/null ; do sleep 1; done;
 
 #Instalación de wordpress
 wp core install \

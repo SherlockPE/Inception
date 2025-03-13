@@ -13,7 +13,8 @@ all: create_volumes
 	docker compose -f srcs/docker-compose.yml up --build -d
 	docker compose -f srcs/docker-compose.yml start
 	@echo ${GREEN}"All services are running ✅"
-	@echo "You can access the website at the following addresses: https://localhost:443 and https://flopez-r.42.fr" ${NC}
+	@echo -n "You can access the website at the following addresses: 
+	@echo ${YELLOW} https://localhost:443 ${GREEN} and ${YELLOW} https://flopez-r.42.fr" ${NC}
 
 up-%:
 	docker compose -f srcs/docker-compose.yml up $* -d
