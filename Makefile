@@ -37,8 +37,8 @@ logs:
 # Clean all images and networks
 kill: down 
 	sudo rm -rf /home/$(USER)/data
-	docker volume prune
-	docker network prune
+	docker volume rm $$(docker volume ls -q)
+	docker network rm $$(docker network ls -q)
 	docker rmi $$(docker images -aq)
 
 create_volumes:
