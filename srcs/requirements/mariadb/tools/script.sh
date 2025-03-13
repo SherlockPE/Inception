@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 #Sustituir variables de entorno en el archivo de configuracion
 mv /database-setup.sql /database-env.bk
 envsubst < /database-env.bk > /database-setup.sql

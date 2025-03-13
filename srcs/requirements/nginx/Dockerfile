@@ -8,8 +8,6 @@ RUN apk update && apk add --no-cache\
 COPY ./conf/nginx.conf /etc/nginx/http.d/inception.conf.bk
 COPY ./tools/script.sh /script.sh
 
-RUN ["chmod", "+x", "/script.sh"]
-
-# EXPOSE 443
+RUN chmod +x /script.sh
 
 CMD [ "/script.sh" ]
